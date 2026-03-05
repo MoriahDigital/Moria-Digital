@@ -1,194 +1,477 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<title>Moriah Digital</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moriah Digital</title>
 
-<style>
+  <style>
+    :root{
+      --green:#0b7a2a;
+      --dark:#111;
+      --bg:#f4f4f4;
+      --card:#ffffff;
+      --line:#e8e8e8;
+      --wa:#25D366;
+    }
 
-body{
-font-family:Arial;
-margin:0;
-background:#f4f4f4;
-}
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color:#222;
+    }
 
-header{
-background:green;
-color:white;
-padding:30px;
-text-align:center;
-}
+    header{
+      background: linear-gradient(135deg, var(--green), #0c9b3a);
+      color:#fff;
+      text-align:center;
+      padding: 22px 16px;
+    }
+    header img{
+      width:110px;
+      height:auto;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.15);
+      margin-bottom:10px;
+    }
+    header h1{
+      margin: 6px 0 6px;
+      letter-spacing: 1px;
+      font-size: 30px;
+    }
+    header p{
+      margin:0;
+      opacity:.95;
+      font-size: 16px;
+    }
 
-.logo{
-width:150px;
-display:block;
-margin:auto;
-margin-bottom:15px;
-}
+    .container{
+      max-width: 1100px;
+      margin: 18px auto;
+      padding: 0 14px 28px;
+    }
 
-section{
-padding:20px;
-}
+    .topbar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
 
-.box{
-background:white;
-padding:20px;
-margin:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+    .search{
+      flex: 1 1 240px;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .search input{
+      width:100%;
+      padding: 12px 12px;
+      border:1px solid var(--line);
+      border-radius: 10px;
+      outline:none;
+      font-size: 15px;
+    }
 
-.contact{
-background:#111;
-color:white;
-padding:20px;
-text-align:center;
-}
+    .badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      background:#f1fff6;
+      border:1px solid #c8f5d8;
+      color:#0f6c2a;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space:nowrap;
+    }
 
-button{
-background:#25D366;
-color:white;
-padding:12px 20px;
-border:none;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
 
-h2{
-color:#333;
-}
+    .card{
+      grid-column: span 12;
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius: 14px;
+      overflow:hidden;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      display:flex;
+      flex-direction:column;
+    }
 
-.product{
-border-top:1px solid #ddd;
-padding-top:15px;
-margin-top:15px;
-}
+    @media(min-width:720px){
+      .card{ grid-column: span 6; }
+    }
+    @media(min-width:1020px){
+      .card{ grid-column: span 4; }
+    }
 
-</style>
+    .thumb{
+      width:100%;
+      height: 210px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
 
+    .content{
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .title{
+      font-size: 18px;
+      font-weight: 800;
+      margin:0;
+    }
+    .specs{
+      margin:0;
+      padding-left: 18px;
+      line-height: 1.5;
+      color:#333;
+    }
+    .price{
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--green);
+      margin: 0;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 4px;
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      text-align:center;
+      flex: 1 1 160px;
+    }
+    .btn-wa{
+      background: var(--wa);
+      color:#fff;
+    }
+    .btn-outline{
+      background:#fff;
+      border:1px solid var(--line);
+      color:#222;
+    }
+
+    .services{
+      margin-top: 18px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .services h2{ margin:0 0 10px; }
+    .services ul{
+      margin:0;
+      padding-left: 18px;
+      line-height: 1.7;
+    }
+
+    .contact{
+      margin-top: 16px;
+      background: var(--dark);
+      color:#fff;
+      border-radius: 14px;
+      padding: 18px;
+      text-align:center;
+    }
+    .contact h2{ margin:0 0 10px; }
+    .contact p{ margin:6px 0; opacity:.95; }
+
+    .footer{
+      text-align:center;
+      padding: 14px 0 4px;
+      color:#666;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <header>
+    <img src="logo.png" alt="Logo Moriah Digital">
+    <h1>MORIAH DIGITAL</h1>
+    <p>Vente d’ordinateurs & accessoires • Maintenance informatique • Création de site web</p>
+  </header>
 
-<img src="logo.png" class="logo">
+  <div class="container">
 
-<h1>MORIAH DIGITAL</h1>
+    <div class="topbar">
+      <div class="search">
+        <input id="search" type="text" placeholder="Rechercher un ordinateur (ex: Victus, EliteBook, ThinkPad...)">
+      </div>
+      <div class="badges">
+        <div class="badge">✅ Qualité</div>
+        <div class="badge">⚡ Performance</div>
+        <div class="badge">🛡 Fiabilité</div>
+      </div>
+    </div>
 
-<p>Vente et maintenance informatique</p>
+    <div class="grid" id="grid">
 
-</header>
+      <!-- 1) HP Victus Gaming -->
+      <div class="card" data-name="hp victus gaming i7 13 16gb 512gb nvidia 3050 windows 11">
+        <div class="thumb">
+          <img src="victus.jpg" alt="HP Victus Gaming">
+        </div>
+        <div class="content">
+          <p class="title">HP Victus Gaming</p>
+          <ul class="specs">
+            <li>Core i7 – 13ème génération</li>
+            <li>RAM 16GB • SSD 512GB</li>
+            <li>Windows 11 • Nvidia 3050 (6GB)</li>
+          </ul>
+          <p class="price">Prix : 8.500.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20HP%20Victus%20Gaming%20(Core%20i7%2013%C3%A8me%2C%2016GB%2C%20512GB)%20%C3%A0%208.500.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<section>
+      <!-- 2) HP EliteBook 830 G8 (i7 11e) -->
+      <div class="card" data-name="hp elitebook 830 g8 i7 11 16gb 512gb tactile">
+        <div class="thumb">
+          <img src="elitebook830.jpg" alt="HP EliteBook 830 G8">
+        </div>
+        <div class="content">
+          <p class="title">HP EliteBook 830 G8</p>
+          <ul class="specs">
+            <li>Core i7 – 11ème génération</li>
+            <li>RAM 16GB • SSD 512GB</li>
+            <li>Écran tactile</li>
+          </ul>
+          <p class="price">Prix : 4.800.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20HP%20EliteBook%20830%20G8%20(Core%20i7%2011%C3%A8me%2C%2016GB%2C%20512GB%2C%20tactile)%20%C3%A0%204.800.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<div class="box">
+      <!-- 3) HP Pavilion (i5 8e / 8GB / 256GB) -->
+      <div class="card" data-name="hp pavilion i5 8 8gb 256gb">
+        <div class="thumb">
+          <!-- Si tu n’as pas l’image, tu peux la remplacer plus tard -->
+          <img src="elitebook830.jpg" alt="HP Pavilion (image temporaire)">
+        </div>
+        <div class="content">
+          <p class="title">HP Pavilion</p>
+          <ul class="specs">
+            <li>Core i5 – 8ème génération</li>
+            <li>RAM 8GB • SSD 256GB</li>
+          </ul>
+          <p class="price">Prix : 2.800.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20HP%20Pavilion%20(Core%20i5%208%C3%A8me%2C%208GB%2C%20256GB)%20%C3%A0%202.800.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<h2>Nos services</h2>
+      <!-- 4) HP ZBook -->
+      <div class="card" data-name="hp zbook i7 8 16gb 512gb nvidia">
+        <div class="thumb">
+          <img src="zbook.jpg" alt="HP ZBook">
+        </div>
+        <div class="content">
+          <p class="title">HP ZBook</p>
+          <ul class="specs">
+            <li>Nvidia 4Go dédiée</li>
+            <li>Core i7 – 8ème génération</li>
+            <li>RAM 16GB • SSD 512GB</li>
+            <li>Pavé numérique</li>
+          </ul>
+          <p class="price">Prix : 5.500.000 FG (à discuter)</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20HP%20ZBook%20(Core%20i7%208%C3%A8me%2C%2016GB%2C%20512GB%2C%20Nvidia%204Go)%20%C3%A0%205.500.000%20FG%20(%C3%A0%20discuter).">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<ul>
+      <!-- 5) Lenovo GEN3 X360 -->
+      <div class="card" data-name="lenovo gen3 x360 pliable celeron 2022 8gb 128gb">
+        <div class="thumb">
+          <img src="lenovo-gen3.jpg" alt="Lenovo GEN3 X360">
+        </div>
+        <div class="content">
+          <p class="title">Lenovo GEN3 (Pliable X360)</p>
+          <ul class="specs">
+            <li>Pliable X360</li>
+            <li>Intel Celeron • Modèle 2022</li>
+            <li>RAM 8GB • SSD 128GB</li>
+          </ul>
+          <p class="price">Prix : 1.900.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20Lenovo%20GEN3%20X360%20(Celeron%2C%208GB%2C%20128GB)%20%C3%A0%201.900.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<li>💻 Vente d'ordinateurs</li>
+      <!-- 6) Lenovo ThinkPad X390 -->
+      <div class="card" data-name="lenovo thinkpad x390 pliable i5 8 8gb 512gb">
+        <div class="thumb">
+          <img src="x390.jpg" alt="Lenovo ThinkPad X390">
+        </div>
+        <div class="content">
+          <p class="title">Lenovo ThinkPad X390 (Pliable)</p>
+          <ul class="specs">
+            <li>8ème génération • Core i5</li>
+            <li>RAM 8GB • SSD 512GB</li>
+          </ul>
+          <p class="price">Prix : 2.900.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20ThinkPad%20X390%20(Core%20i5%208%C3%A8me%2C%208GB%2C%20512GB)%20%C3%A0%202.900.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<li>🖱 Vente d'accessoires (souris, clavier, disque dur)</li>
+      <!-- 7) Lenovo ThinkPad L13 -->
+      <div class="card" data-name="lenovo thinkpad l13 i5 10 8gb 512gb">
+        <div class="thumb">
+          <img src="l13.jpg" alt="Lenovo ThinkPad L13">
+        </div>
+        <div class="content">
+          <p class="title">Lenovo ThinkPad L13</p>
+          <ul class="specs">
+            <li>10ème génération • Core i5</li>
+            <li>RAM 8GB • SSD 512GB</li>
+          </ul>
+          <p class="price">Prix : 3.000.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20ThinkPad%20L13%20(Core%20i5%2010%C3%A8me%2C%208GB%2C%20512GB)%20%C3%A0%203.000.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<li>🛠 Maintenance informatique</li>
+      <!-- 8) Lenovo ThinkPad X13 -->
+      <div class="card" data-name="lenovo thinkpad x13 i7 10 16gb 512gb tactile">
+        <div class="thumb">
+          <img src="x13.jpg" alt="Lenovo ThinkPad X13">
+        </div>
+        <div class="content">
+          <p class="title">Lenovo ThinkPad X13</p>
+          <ul class="specs">
+            <li>Core i7 – 10ème génération</li>
+            <li>RAM 16GB • SSD 512GB</li>
+            <li>Écran tactile</li>
+          </ul>
+          <p class="price">Prix : 4.000.000 FG</p>
+          <div class="actions">
+            <a class="btn btn-wa" target="_blank"
+              href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20commander%20le%20ThinkPad%20X13%20(Core%20i7%2010%C3%A8me%2C%2016GB%2C%20512GB%2C%20tactile)%20%C3%A0%204.000.000%20FG.">
+              Commander sur WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#contact">Contacter</a>
+          </div>
+        </div>
+      </div>
 
-<li>💿 Installation logiciels professionnels</li>
+    </div>
 
-<li>🌐 Assistance communication digitale</li>
+    <div class="services">
+      <h2>Nos services</h2>
+      <ul>
+        <li>💻 Vente d’ordinateurs</li>
+        <li>🖱 Vente d’accessoires (chargeur, souris, clavier, disque dur, etc.)</li>
+        <li>🛠 Maintenance informatique (installation, réinstallation, réparation)</li>
+        <li>🌐 Création de site web / communication digitale</li>
+      </ul>
+    </div>
 
-</ul>
+    <div class="contact" id="contact">
+      <h2>Contact</h2>
+      <p>📞 625 26 26 96 / 666 03 40 07</p>
+      <p>📧 motacomdguinee@gmail.com</p>
+      <p style="margin-top:12px;">
+        <a class="btn btn-wa" style="display:inline-block; max-width:340px;"
+           target="_blank" href="https://wa.me/224625262696?text=Bonjour%20Moriah%20Digital%2C%20je%20veux%20des%20informations%20sur%20vos%20ordinateurs.">
+          Écrire sur WhatsApp
+        </a>
+      </p>
+    </div>
 
-</div>
+    <div class="footer">
+      © Moriah Digital — Qualité, Performance & Fiabilité
+    </div>
+  </div>
 
-</section>
+  <script>
+    const search = document.getElementById('search');
+    const cards = Array.from(document.querySelectorAll('.card'));
 
-<section>
-
-<div class="box">
-
-<h2>Nos ordinateurs</h2>
-
-<div class="product">
-
-<h3>HP Victus Gaming</h3>
-
-<p>Core i7 13ème génération</p>
-
-<p>RAM 16GB - SSD 512GB</p>
-
-<p><strong>Prix : 8.500.000 FG</strong></p>
-
-<a href="https://wa.me/224625262696">
-
-<button>Commander sur WhatsApp</button>
-
-</a>
-
-</div>
-
-<div class="product">
-
-<h3>HP EliteBook 830 G8</h3>
-
-<p>Core i7 11ème génération</p>
-
-<p>RAM 16GB - SSD 512GB</p>
-
-<p>Écran tactile</p>
-
-<p><strong>Prix : 4.800.000 FG</strong></p>
-
-<a href="https://wa.me/224625262696">
-
-<button>Commander sur WhatsApp</button>
-
-</a>
-
-</div>
-
-<div class="product">
-
-<h3>HP Pavilion</h3>
-
-<p>Core i5 8ème génération</p>
-
-<p>RAM 8GB - SSD 256GB</p>
-
-<p><strong>Prix : 2.800.000 FG</strong></p>
-
-<a href="https://wa.me/224625262696">
-
-<button>Commander sur WhatsApp</button>
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<div class="contact">
-
-<h2>Contact</h2>
-
-<p>📞 625 26 26 96 / 666 03 40 07</p>
-
-<p>📧 motacomdguinee@gmail.com</p>
-
-<br>
-
-<a href="https://wa.me/224625262696">
-
-<button>Discuter sur WhatsApp</button>
-
-</a>
-
-</div>
+    search.addEventListener('input', () => {
+      const q = (search.value || '').toLowerCase().trim();
+      cards.forEach(card => {
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        card.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
 
 </body>
-
 </html>
